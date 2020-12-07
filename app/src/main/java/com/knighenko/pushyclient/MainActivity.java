@@ -3,6 +3,7 @@ package com.knighenko.pushyclient;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +24,12 @@ public class MainActivity extends AppCompatActivity {
         if (!Pushy.isRegistered(this)) {
             new RegisterForPushNotificationsAsync(this).execute();
         }
+
+
+        Intent myIntent = new Intent(MainActivity.this, Play.class);
+        myIntent.putExtra("inputExtra", "Мониторинг в рубрике Дом и Сад");
+        // Call startService with Intent parameter.
+        this.startService(myIntent);
     }
 
     private class RegisterForPushNotificationsAsync extends AsyncTask<Void, Void, Object> {
